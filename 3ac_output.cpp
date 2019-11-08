@@ -64,11 +64,11 @@ Opd * StrLitNode::flatten(Procedure * proc){
 }
 
 Opd * TrueNode::flatten(Procedure * prog){
-	TODO(Implement me)
+	return new LitOpd("true");
 }
 
 Opd * FalseNode::flatten(Procedure * prog){
-	TODO(Implement me)
+	return new LitOpd("false");
 }
 
 Opd * AssignNode::flatten(Procedure * proc){
@@ -92,7 +92,18 @@ Opd * NotNode::flatten(Procedure * proc){
 }
 
 Opd * PlusNode::flatten(Procedure * proc){
-	TODO(Implement me)
+	Opd * left = myExp1->flatten(proc);
+	Opd * right = myExp2->flatten(proc);
+
+	BinOp myOp = ADD;
+
+	Opd * tmp = new AuxOpd("tmp");
+
+	BinOpQuad * myBinOp = new BinOpQuad(tmp, myOp, left, right);
+
+	proc->addQuad(myBinOp);
+
+	return tmp;
 }
 
 Opd * MinusNode::flatten(Procedure * proc){
@@ -192,12 +203,12 @@ void VarDeclNode::to3AC(IRProgram * prog){
 	if (sym == nullptr){
 		throw new InternalError("null sym");
 	}
-	
+
 	prog->gatherGlobal(sym);
 }
 
 //We only get to this node if we are in a stmt
-// context (DeclNodes protect descent) 
+// context (DeclNodes protect descent)
 Opd * IdNode::flatten(Procedure * proc){
 	TODO(Implement me)
 }
