@@ -72,7 +72,11 @@ Opd * FalseNode::flatten(Procedure * prog){
 }
 
 Opd * AssignNode::flatten(Procedure * proc){
-	TODO(Implement me)
+	Opd* tgtOpd = myTgt->flatten(proc);
+	Opd* srcOpd = mySrc->flatten(proc);
+	AssignQuad* myAssignQuad = new AssignQuad(tgtOpd, srcOpd);
+	proc->addQuad(myAssignQuad);
+	return(tgtOpd);
 }
 
 Opd * DerefNode::flatten(Procedure * proc){
@@ -80,7 +84,12 @@ Opd * DerefNode::flatten(Procedure * proc){
 }
 
 Opd * CallExpNode::flatten(Procedure * proc){
-	TODO(Implement me)
+	//generate the 3AC for setin's required to make the call
+	myExpList->to3AC(proc);
+	Opd* idOpd = myId->flatten(proc);
+	CallQuad* myCallQuad = new CallQuad(myId->getSymbol());
+	proc->addQuad(myCallQuad);
+	return(idOpd);
 }
 
 Opd * UnaryMinusNode::flatten(Procedure * proc){
@@ -151,7 +160,7 @@ Opd * GreaterEqNode::flatten(Procedure * proc){
 }
 
 void AssignStmtNode::to3AC(Procedure * proc){
-	TODO(Implement me)
+	myAssign->flatten(proc);
 }
 
 void PostIncStmtNode::to3AC(Procedure * proc){
@@ -183,7 +192,7 @@ void WhileStmtNode::to3AC(Procedure * proc){
 }
 
 void CallStmtNode::to3AC(Procedure * proc){
-	TODO(Implement me)
+	myCallExp->flatten(proc);
 }
 
 void ReturnStmtNode::to3AC(Procedure * proc){
@@ -210,7 +219,8 @@ void VarDeclNode::to3AC(IRProgram * prog){
 //We only get to this node if we are in a stmt
 // context (DeclNodes protect descent)
 Opd * IdNode::flatten(Procedure * proc){
-	TODO(Implement me)
+	SymOpd* idOpd = proc->getSymOpd(mySymbol);
+	return(idOpd);
 }
 
 
