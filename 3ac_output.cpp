@@ -97,7 +97,7 @@ Opd * PlusNode::flatten(Procedure * proc){
 
 	BinOp myOp = ADD;
 
-	Opd * tmp = new AuxOpd("tmp");
+	Opd * tmp = proc->makeTmp();
 
 	BinOpQuad * myBinOp = new BinOpQuad(tmp, myOp, left, right);
 
