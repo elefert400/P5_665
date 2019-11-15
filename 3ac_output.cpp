@@ -23,35 +23,54 @@ void DeclListNode::to3AC(IRProgram * prog){
 }
 
 void FnDeclNode::to3AC(IRProgram * prog){
-	TODO(Implement me)
+	Procedure* myProc = prog->makeProc(getDeclaredName());
+	//calling proc version of FnDeclNode::to3AC
+	to3AC(myProc);
 }
 
 void FnDeclNode::to3AC(Procedure * proc){
-	TODO(Implement me)
+	myFormals->to3AC(proc);
+	EnterQuad* myEnter = new EnterQuad(proc);
+	proc->addQuad(myEnter);
+	myFormals->to3AC(proc);
+	myBody->to3AC(proc);
 }
 
 void FormalDeclNode::to3AC(IRProgram * prog){
-	TODO(Implement me)
+	TODO(Implement me)//this
 }
 
 void FormalDeclNode::to3AC(Procedure * proc){
-	TODO(Implement me)
+	TODO(Implement me)//this
 }
 
 void FormalsListNode::to3AC(Procedure * proc){
-	TODO(Implement me)
+	size_t argIndex = 1;
+	for(auto formal : *myFormals){
+		GetInQuad* currFormalQuad = new GetInQuad(argIndex, formal->getDeclaredID()->flatten(proc));
+		proc->addQuad(currFormalQuad);
+		formal->to3AC(proc->getProg());
+		formal->to3AC(proc);
+		argIndex++;
+	}
 }
 
 void ExpListNode::to3AC(Procedure * proc){
-	TODO(Implement me)
+	size_t argIndex = 1;
+	for(auto exp : *myExps){
+		SetInQuad* currArgQuad = new SetInQuad(argIndex, exp->flatten(proc));
+		proc->addQuad(currArgQuad);
+		argIndex++;
+	}
 }
 
 void StmtListNode::to3AC(Procedure * proc){
-	TODO(Implement me)
+	TODO(Implement me)//this
 }
 
 void FnBodyNode::to3AC(Procedure * proc){
-	TODO(Implement me)
+	myVarDecls->to3AC(proc);
+	myStmtList->to3AC(proc);
 }
 
 Opd * IntLitNode::flatten(Procedure * proc){

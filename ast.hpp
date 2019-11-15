@@ -272,7 +272,7 @@ public:
 	bool nameAnalysis(SymbolTable * symTab) override;
 	virtual void typeAnalysis(TypeAnalysis *);
 	void to3AC(IRProgram * prog) override;
-	void to3AC(Procedure * prog) override;
+	void to3AC(Procedure * proc) override;
 	/*
 	const FnType * getFnType(){
 		SemSymbol * sym = myID->getSymbol();
