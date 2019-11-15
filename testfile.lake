@@ -1,0 +1,6 @@
+int foo(int poop){
+    
+}
+void main(int firstMainArg){
+    int a;
+}

@@ -1,0 +1,16 @@
+[BEGIN GLOBALS]
+[END GLOBALS]
+[BEGIN foo LOCALS]
+poop (formal)
+[END foo LOCALS]
+enter foo
+getin 1 poop
+lbl_0: leave foo
+[BEGIN main LOCALS]
+firstMainArg (formal)
+a (local)
+[END main LOCALS]
+enter main
+getin 1 firstMainArg
+lbl_1: EXIT
+

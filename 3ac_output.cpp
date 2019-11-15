@@ -30,28 +30,28 @@ void FnDeclNode::to3AC(IRProgram * prog){
 
 void FnDeclNode::to3AC(Procedure * proc){
 	myFormals->to3AC(proc);
-	EnterQuad* myEnter = new EnterQuad(proc);
-	proc->addQuad(myEnter);
-	myFormals->to3AC(proc);
 	myBody->to3AC(proc);
 }
 
 void FormalDeclNode::to3AC(IRProgram * prog){
-	TODO(Implement me)//this
+	//what did you do differently here vs FormalDeclNode
 }
 
 void FormalDeclNode::to3AC(Procedure * proc){
-	TODO(Implement me)//this
+	SemSymbol* idFormalSemSym = getDeclaredID()->getSymbol();
+	proc->gatherFormal(idFormalSemSym);	
 }
 
 void FormalsListNode::to3AC(Procedure * proc){
 	size_t argIndex = 1;
 	for(auto formal : *myFormals){
-		GetInQuad* currFormalQuad = new GetInQuad(argIndex, formal->getDeclaredID()->flatten(proc));
-		proc->addQuad(currFormalQuad);
-		formal->to3AC(proc->getProg());
+		//formal->to3AC(proc->getProg());
 		formal->to3AC(proc);
+		GetInQuad* currFormalQuad = new GetInQuad(argIndex, proc->getSymOpd(formal->getDeclaredID()->getSymbol()));
+		proc->addQuad(currFormalQuad);
 		argIndex++;
+		// GetInQuad* currFormalQuad = new GetInQuad(argIndex, formal->getDeclaredID()->flatten(proc));
+
 	}
 }
 
@@ -65,7 +65,9 @@ void ExpListNode::to3AC(Procedure * proc){
 }
 
 void StmtListNode::to3AC(Procedure * proc){
-	TODO(Implement me)//this
+	for(auto stmt : *myStmts){
+		stmt->to3AC(proc);
+	}
 }
 
 void FnBodyNode::to3AC(Procedure * proc){
@@ -83,18 +85,18 @@ Opd * StrLitNode::flatten(Procedure * proc){
 }
 
 Opd * TrueNode::flatten(Procedure * prog){
-	return new LitOpd("true");
+	return new LitOpd("true");//oracle shows true -> 1
 }
 
 Opd * FalseNode::flatten(Procedure * prog){
-	return new LitOpd("false");
+	return new LitOpd("false");//oracle shows false -> 1
 }
 
 Opd * AssignNode::flatten(Procedure * proc){
 	Opd* tgtOpd = myTgt->flatten(proc);
 	Opd* srcOpd = mySrc->flatten(proc);
-	AssignQuad* myAssignQuad = new AssignQuad(tgtOpd, srcOpd);
-	proc->addQuad(myAssignQuad);
+	AssignQuad* myAssignQuad = new AssignQuad(tgtOpd, srcOpd);//combined these two
+	proc->addQuad(myAssignQuad);//this one
 	return(tgtOpd);
 }
 
@@ -238,6 +240,8 @@ void VarDeclNode::to3AC(IRProgram * prog){
 //We only get to this node if we are in a stmt
 // context (DeclNodes protect descent)
 Opd * IdNode::flatten(Procedure * proc){
+	//do you need to add the node quad or something?
+	//it should already be connected on the gatherGlobal and gatherLocal calls
 	SymOpd* idOpd = proc->getSymOpd(mySymbol);
 	return(idOpd);
 }
