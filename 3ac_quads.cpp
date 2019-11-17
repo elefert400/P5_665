@@ -150,7 +150,14 @@ std::string SyscallQuad::repr(){
 	}
 	return res;
 }
-
+LocQuad::LocQuad(Opd * srcIn)
+: Quad(), src(srcIn), dst(nullptr){ }
+std::string LocQuad::repr(){
+	std::string res = "";
+	return "@" + src->toString();
+}
+LocQuad::LocQuad(Opd * srcIn, Opd * dstIn)
+: Quad(), src(srcIn), dst(dstIn){ }
 JmpQuad::JmpQuad(Label * tgtIn)
 : Quad(), tgt(tgtIn){ }
 

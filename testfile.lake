@@ -1,10 +1,7 @@
 
 int main()
 {
-  int y;
   int x;
-  bool t;
-  bool e;
-  e = !t;
-  x = -y;
+  x++;
+  x--;
 }

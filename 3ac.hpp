@@ -121,9 +121,11 @@ private:
 class LocQuad : public Quad {
 public:
 	LocQuad(Opd * srcIn);
+	LocQuad(Opd * srcIn, Opd * dstIn);
 	std::string repr() override;
 private:
 	Opd * src;
+	Opd * dst;
 };
 
 class JmpQuad : public Quad {

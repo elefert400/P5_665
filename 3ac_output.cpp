@@ -398,11 +398,15 @@ void AssignStmtNode::to3AC(Procedure * proc){
 }
 
 void PostIncStmtNode::to3AC(Procedure * proc){
-	TODO(Implement me)
+	Opd* expOpd = myExp->flatten(proc);
+	BinOpQuad* myIncrQuad = new BinOpQuad(expOpd, ADD, expOpd, new LitOpd("1"));
+	proc->addQuad(myIncrQuad);
 }
 
 void PostDecStmtNode::to3AC(Procedure * proc){
-	TODO(Implement me)
+	Opd* expOpd = myExp->flatten(proc);
+	BinOpQuad* myIncrQuad = new BinOpQuad(expOpd, SUB, expOpd, new LitOpd("1"));
+	proc->addQuad(myIncrQuad);
 }
 
 void ReadStmtNode::to3AC(Procedure * proc){
