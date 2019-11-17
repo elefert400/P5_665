@@ -85,11 +85,11 @@ Opd * StrLitNode::flatten(Procedure * proc){
 }
 
 Opd * TrueNode::flatten(Procedure * prog){
-	return new LitOpd("true");//oracle shows true -> 1
+	return new LitOpd("1");//oracle shows true -> 1
 }
 
 Opd * FalseNode::flatten(Procedure * prog){
-	return new LitOpd("false");//oracle shows false -> 1
+	return new LitOpd("2");//oracle shows false -> 1
 }
 
 Opd * AssignNode::flatten(Procedure * proc){
@@ -418,7 +418,14 @@ void WriteStmtNode::to3AC(Procedure * proc){
 }
 
 void IfStmtNode::to3AC(Procedure * proc){
-	TODO(Implement me)
+	Opd * flatStanley = myExp->flatten(proc);
+	Label * beginLbl = proc->makeLabel();
+	NopQuad * beginNoOp = new NopQuad();
+	JmpIfQuad * myJmp = new JmpIfQuad(flatStanley, false, beginLbl);
+	proc->addQuad(myJmp);
+	myDecls->to3AC(proc);
+	myStmts->to3AC(proc);
+	proc->addQuad(beginNoOp);
 }
 
 void IfElseStmtNode::to3AC(Procedure * proc){

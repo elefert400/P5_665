@@ -1,9 +1,9 @@
 
 int main()
 {
-  bool y;
-  while(1 < 2){
-    int x;
-    x++;
+int x;
+  if(true)
+  {
+    x = 3;
   }
 }
