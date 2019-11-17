@@ -1,7 +1,9 @@
 
 int main()
 {
-  int y;
-  int x;
-  x = -y;
+  bool y;
+  while(1 < 2){
+    int x;
+    x++;
+  }
 }

@@ -426,7 +426,28 @@ void IfElseStmtNode::to3AC(Procedure * proc){
 }
 
 void WhileStmtNode::to3AC(Procedure * proc){
-	TODO(Implement me)
+	Label * beginLbl = proc->makeLabel();
+	NopQuad * beginNoOp = new NopQuad();
+	beginNoOp->addLabel(beginLbl);
+	proc->addQuad(beginNoOp);
+
+
+	Label * endLbl = proc->makeLabel();
+	NopQuad * endNoOp = new NopQuad();
+	endNoOp->addLabel(endLbl);
+
+
+	Opd * flattenedExp = myExp->flatten(proc);
+	JmpIfQuad * myJump = new JmpIfQuad(flattenedExp, false, endLbl);
+	proc->addQuad(myJump);
+
+	myDecls->to3AC(proc);
+	myStmts->to3AC(proc);
+
+
+	JmpQuad * backToStartJmp = new JmpQuad(beginLbl);
+	proc->addQuad(backToStartJmp);
+	proc->addQuad(endNoOp);
 }
 
 void CallStmtNode::to3AC(Procedure * proc){
