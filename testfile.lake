@@ -1,23 +1,10 @@
-int arg;
+
 int main()
 {
-  bool a;
-  bool b;
-  bool c;
   int y;
   int x;
-  x = y + arg;
-  x = y - arg;
-  x = y * arg;
-  x = y / arg;
-
-  c = a || b;
-  c = a && b;
-
-  c = a == b;
-  c = a != b;
-  c = x < y;
-  c = x > y;
-  c = x <= y;
-  c = x >= y;
+  bool t;
+  bool e;
+  e = !t;
+  x = -y;
 }

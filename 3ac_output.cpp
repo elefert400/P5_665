@@ -114,11 +114,31 @@ Opd * CallExpNode::flatten(Procedure * proc){
 }
 
 Opd * UnaryMinusNode::flatten(Procedure * proc){
-	TODO(Implement me)
+	Opd * meExp = myExp->flatten(proc);
+
+	UnaryOp myOp = NEG;
+
+	Opd * tmp = proc->makeTmp();
+
+	UnaryOpQuad * myQuad = new UnaryOpQuad(tmp, myOp, meExp);
+
+	proc->addQuad(myQuad);
+
+	return tmp;
 }
 
 Opd * NotNode::flatten(Procedure * proc){
-	TODO(Implement me)
+	Opd * meExp = myExp->flatten(proc);
+
+	UnaryOp myOp = NOT;
+
+	Opd * tmp = proc->makeTmp();
+
+	UnaryOpQuad * myQuad = new UnaryOpQuad(tmp, myOp, meExp);
+
+	proc->addQuad(myQuad);
+
+	return tmp;
 }
 
 Opd * PlusNode::flatten(Procedure * proc){
