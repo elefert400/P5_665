@@ -39,7 +39,7 @@ void FormalDeclNode::to3AC(IRProgram * prog){
 
 void FormalDeclNode::to3AC(Procedure * proc){
 	SemSymbol* idFormalSemSym = getDeclaredID()->getSymbol();
-	proc->gatherFormal(idFormalSemSym);	
+	proc->gatherFormal(idFormalSemSym);
 }
 
 void FormalsListNode::to3AC(Procedure * proc){
@@ -122,62 +122,255 @@ Opd * NotNode::flatten(Procedure * proc){
 }
 
 Opd * PlusNode::flatten(Procedure * proc){
+	//flatten the left and right operands
 	Opd * left = myExp1->flatten(proc);
 	Opd * right = myExp2->flatten(proc);
 
+	//get the operation
 	BinOp myOp = ADD;
 
+	//generate the temp that is returned
 	Opd * tmp = proc->makeTmp();
 
+	//make the quad
 	BinOpQuad * myBinOp = new BinOpQuad(tmp, myOp, left, right);
 
+	// add the quad to the procedure
 	proc->addQuad(myBinOp);
 
+	//return the temp
 	return tmp;
 }
 
 Opd * MinusNode::flatten(Procedure * proc){
-	TODO(Implement me)
+	//flatten the left and right operands
+	Opd * left = myExp1->flatten(proc);
+	Opd * right = myExp2->flatten(proc);
+
+	//get the operation
+	BinOp myOp = SUB;
+
+	//generate the temp that is returned
+	Opd * tmp = proc->makeTmp();
+
+	//make the quad
+	BinOpQuad * myBinOp = new BinOpQuad(tmp, myOp, left, right);
+
+	// add the quad to the procedure
+	proc->addQuad(myBinOp);
+
+	//return the temp
+	return tmp;
 }
 
 Opd * TimesNode::flatten(Procedure * proc){
-	TODO(Implement me)
+	//flatten the left and right operands
+	Opd * left = myExp1->flatten(proc);
+	Opd * right = myExp2->flatten(proc);
+
+	//get the operation
+	BinOp myOp = MULT;
+
+	//generate the temp that is returned
+	Opd * tmp = proc->makeTmp();
+
+	//make the quad
+	BinOpQuad * myBinOp = new BinOpQuad(tmp, myOp, left, right);
+
+	// add the quad to the procedure
+	proc->addQuad(myBinOp);
+
+	//return the temp
+	return tmp;
 }
 
 Opd * DivideNode::flatten(Procedure * proc){
-	TODO(Implement me)
+	//flatten the left and right operands
+	Opd * left = myExp1->flatten(proc);
+	Opd * right = myExp2->flatten(proc);
+
+	//get the operation
+	BinOp myOp = DIV;
+
+	//generate the temp that is returned
+	Opd * tmp = proc->makeTmp();
+
+	//make the quad
+	BinOpQuad * myBinOp = new BinOpQuad(tmp, myOp, left, right);
+
+	// add the quad to the procedure
+	proc->addQuad(myBinOp);
+
+	//return the temp
+	return tmp;
 }
 
 Opd * AndNode::flatten(Procedure * proc){
-	TODO(Implement me)
+	//flatten the left and right operands
+	Opd * left = myExp1->flatten(proc);
+	Opd * right = myExp2->flatten(proc);
+
+	//get the operation
+	BinOp myOp = AND;
+
+	//generate the temp that is returned
+	Opd * tmp = proc->makeTmp();
+
+	//make the quad
+	BinOpQuad * myBinOp = new BinOpQuad(tmp, myOp, left, right);
+
+	// add the quad to the procedure
+	proc->addQuad(myBinOp);
+
+	//return the temp
+	return tmp;
 }
 
 Opd * OrNode::flatten(Procedure * proc){
-	TODO(Implement me)
+	//flatten the left and right operands
+	Opd * left = myExp1->flatten(proc);
+	Opd * right = myExp2->flatten(proc);
+
+	//get the operation
+	BinOp myOp = OR;
+
+	//generate the temp that is returned
+	Opd * tmp = proc->makeTmp();
+
+	//make the quad
+	BinOpQuad * myBinOp = new BinOpQuad(tmp, myOp, left, right);
+
+	// add the quad to the procedure
+	proc->addQuad(myBinOp);
+
+	//return the temp
+	return tmp;
 }
 
 Opd * EqualsNode::flatten(Procedure * proc){
-	TODO(Implement me)
+	//flatten the left and right operands
+	Opd * left = myExp1->flatten(proc);
+	Opd * right = myExp2->flatten(proc);
+
+	//get the operation
+	BinOp myOp = EQ;
+
+	//generate the temp that is returned
+	Opd * tmp = proc->makeTmp();
+
+	//make the quad
+	BinOpQuad * myBinOp = new BinOpQuad(tmp, myOp, left, right);
+
+	// add the quad to the procedure
+	proc->addQuad(myBinOp);
+
+	//return the temp
+	return tmp;
 }
 
 Opd * NotEqualsNode::flatten(Procedure * proc){
-	TODO(Implement me)
+	//flatten the left and right operands
+	Opd * left = myExp1->flatten(proc);
+	Opd * right = myExp2->flatten(proc);
+
+	//get the operation
+	BinOp myOp = NEQ;
+
+	//generate the temp that is returned
+	Opd * tmp = proc->makeTmp();
+
+	//make the quad
+	BinOpQuad * myBinOp = new BinOpQuad(tmp, myOp, left, right);
+
+	// add the quad to the procedure
+	proc->addQuad(myBinOp);
+
+	//return the temp
+	return tmp;
 }
 
 Opd * LessNode::flatten(Procedure * proc){
-	TODO(Implement me)
+	//flatten the left and right operands
+	Opd * left = myExp1->flatten(proc);
+	Opd * right = myExp2->flatten(proc);
+
+	//get the operation
+	BinOp myOp = LT;
+
+	//generate the temp that is returned
+	Opd * tmp = proc->makeTmp();
+
+	//make the quad
+	BinOpQuad * myBinOp = new BinOpQuad(tmp, myOp, left, right);
+
+	// add the quad to the procedure
+	proc->addQuad(myBinOp);
+
+	//return the temp
+	return tmp;
 }
 
 Opd * GreaterNode::flatten(Procedure * proc){
-	TODO(Implement me)
+	//flatten the left and right operands
+	Opd * left = myExp1->flatten(proc);
+	Opd * right = myExp2->flatten(proc);
+
+	//get the operation
+	BinOp myOp = GT;
+
+	//generate the temp that is returned
+	Opd * tmp = proc->makeTmp();
+
+	//make the quad
+	BinOpQuad * myBinOp = new BinOpQuad(tmp, myOp, left, right);
+
+	// add the quad to the procedure
+	proc->addQuad(myBinOp);
+
+	//return the temp
+	return tmp;
 }
 
 Opd * LessEqNode::flatten(Procedure * proc){
-	TODO(Implement me)
+	//flatten the left and right operands
+	Opd * left = myExp1->flatten(proc);
+	Opd * right = myExp2->flatten(proc);
+
+	//get the operation
+	BinOp myOp = LTE;
+
+	//generate the temp that is returned
+	Opd * tmp = proc->makeTmp();
+
+	//make the quad
+	BinOpQuad * myBinOp = new BinOpQuad(tmp, myOp, left, right);
+
+	// add the quad to the procedure
+	proc->addQuad(myBinOp);
+
+	//return the temp
+	return tmp;
 }
 
 Opd * GreaterEqNode::flatten(Procedure * proc){
-	TODO(Implement me)
+	//flatten the left and right operands
+	Opd * left = myExp1->flatten(proc);
+	Opd * right = myExp2->flatten(proc);
+
+	//get the operation
+	BinOp myOp = GTE;
+
+	//generate the temp that is returned
+	Opd * tmp = proc->makeTmp();
+
+	//make the quad
+	BinOpQuad * myBinOp = new BinOpQuad(tmp, myOp, left, right);
+
+	// add the quad to the procedure
+	proc->addQuad(myBinOp);
+
+	//return the temp
+	return tmp;
 }
 
 void AssignStmtNode::to3AC(Procedure * proc){
