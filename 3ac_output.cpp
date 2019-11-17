@@ -462,7 +462,10 @@ void CallStmtNode::to3AC(Procedure * proc){
 }
 
 void ReturnStmtNode::to3AC(Procedure * proc){
-	TODO(Implement me)
+	Opd * expOpd = myExp->flatten(proc);
+	size_t index = 1;
+	proc->addQuad(new SetOutQuad(index, expOpd));
+	proc->addQuad(new JmpQuad(proc->getLeaveLabel()));
 }
 
 void VarDeclNode::to3AC(Procedure * proc){
