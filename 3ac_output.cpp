@@ -421,6 +421,7 @@ void IfStmtNode::to3AC(Procedure * proc){
 	Opd * flatStanley = myExp->flatten(proc);
 	Label * beginLbl = proc->makeLabel();
 	NopQuad * beginNoOp = new NopQuad();
+	beginNoOp->addLabel(beginLbl);
 	JmpIfQuad * myJmp = new JmpIfQuad(flatStanley, false, beginLbl);
 	proc->addQuad(myJmp);
 	myDecls->to3AC(proc);
