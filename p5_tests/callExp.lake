@@ -1,0 +1,10 @@
+int foo(){
+    return 1;
+}
+bool bar(){
+    return false;
+}
+void func(int x, bool b){}
+int main(){
+    func(foo() + 1, bar());
+}

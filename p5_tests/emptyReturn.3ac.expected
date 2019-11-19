@@ -1,0 +1,7 @@
+[BEGIN GLOBALS]
+[END GLOBALS]
+[BEGIN main LOCALS]
+[END main LOCALS]
+enter main
+goto lbl_0
+lbl_0: EXIT

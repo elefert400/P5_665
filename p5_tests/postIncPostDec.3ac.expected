@@ -1,0 +1,10 @@
+[BEGIN GLOBALS]
+[END GLOBALS]
+[BEGIN main LOCALS]
+x (local)
+[END main LOCALS]
+enter main
+x := 1
+x := x ADD 1
+x := x SUB 1
+lbl_0: EXIT

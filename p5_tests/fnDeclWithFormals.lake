@@ -1,0 +1,9 @@
+bool foo(int x, bool b){}
+int main(){
+    int myX;
+    bool myB;
+    myX = 1;
+    myB = false;
+    foo(1, true);
+    foo(myX, myB);
+}

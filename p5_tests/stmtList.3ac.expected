@@ -1,0 +1,12 @@
+[BEGIN GLOBALS]
+[END GLOBALS]
+[BEGIN foo LOCALS]
+[END foo LOCALS]
+enter foo
+lbl_0: leave foo
+[BEGIN main LOCALS]
+x (local)
+y (local)
+[END main LOCALS]
+enter main
+lbl_1: EXIT

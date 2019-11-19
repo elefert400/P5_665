@@ -1,0 +1,14 @@
+[BEGIN GLOBALS]
+[END GLOBALS]
+[BEGIN main LOCALS]
+x (local)
+b (local)
+[END main LOCALS]
+enter main
+x := 1
+b := 1
+READ x
+WRITE x
+READ b
+WRITE b
+lbl_0: EXIT

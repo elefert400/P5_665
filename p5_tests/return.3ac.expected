@@ -1,0 +1,30 @@
+[BEGIN GLOBALS]
+[END GLOBALS]
+[BEGIN fooVoid LOCALS]
+[END fooVoid LOCALS]
+enter fooVoid
+goto lbl_0
+lbl_0: leave fooVoid
+[BEGIN fooInt LOCALS]
+[END fooInt LOCALS]
+enter fooInt
+setout 1 1
+goto lbl_1
+lbl_1: leave fooInt
+[BEGIN fooBool LOCALS]
+[END fooBool LOCALS]
+enter fooBool
+setout 1 1
+goto lbl_2
+lbl_2: leave fooBool
+[BEGIN main LOCALS]
+tmp0 (tmp)
+tmp1 (tmp)
+[END main LOCALS]
+enter main
+call fooVoid
+call fooInt
+getout 1 tmp0
+call fooBool
+getout 1 tmp1
+lbl_3: EXIT

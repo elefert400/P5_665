@@ -1,0 +1,19 @@
+[BEGIN GLOBALS]
+[END GLOBALS]
+[BEGIN foo LOCALS]
+[END foo LOCALS]
+enter foo
+setout 1 5
+goto lbl_0
+lbl_0: leave foo
+[BEGIN main LOCALS]
+x (local)
+tmp0 (tmp)
+tmp1 (tmp)
+[END main LOCALS]
+enter main
+call foo
+getout 1 tmp0
+tmp1 := tmp0 ADD 1
+x := tmp1
+lbl_1: EXIT

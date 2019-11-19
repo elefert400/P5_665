@@ -9,7 +9,7 @@ lbl_0: leave foo
 [BEGIN bar LOCALS]
 [END bar LOCALS]
 enter bar
-setout 1 2
+setout 1 0
 goto lbl_1
 lbl_1: leave bar
 [BEGIN func LOCALS]
@@ -35,4 +35,3 @@ getout 1 tmp2
 setin 2 tmp2
 call func
 lbl_3: EXIT
-

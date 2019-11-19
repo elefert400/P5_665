@@ -1,0 +1,32 @@
+[BEGIN GLOBALS]
+[END GLOBALS]
+[BEGIN main LOCALS]
+b (local)
+x (local)
+y (local)
+tmp0 (tmp)
+tmp1 (tmp)
+[END main LOCALS]
+enter main
+b := 0
+x := 1
+y := 2
+lbl_1: nop
+iffalse 1 goto lbl_2
+goto lbl_1
+lbl_2: nop
+lbl_3: nop
+iffalse b goto lbl_4
+goto lbl_3
+lbl_4: nop
+lbl_5: nop
+tmp0 := x LT y
+iffalse tmp0 goto lbl_6
+goto lbl_5
+lbl_6: nop
+lbl_7: nop
+tmp1 := y GT x
+iffalse tmp1 goto lbl_8
+goto lbl_7
+lbl_8: nop
+lbl_0: EXIT

@@ -89,7 +89,7 @@ Opd * TrueNode::flatten(Procedure * prog){
 }
 
 Opd * FalseNode::flatten(Procedure * prog){
-	return new LitOpd("2");//oracle shows false -> 1
+	return new LitOpd("0");//oracle shows false -> 1
 }
 
 Opd * AssignNode::flatten(Procedure * proc){
@@ -493,9 +493,11 @@ void CallStmtNode::to3AC(Procedure * proc){
 }
 
 void ReturnStmtNode::to3AC(Procedure * proc){
-	Opd * expOpd = myExp->flatten(proc);
-	size_t index = 1;
-	proc->addQuad(new SetOutQuad(index, expOpd));
+	if(myExp != nullptr){
+		Opd * expOpd = myExp->flatten(proc);
+		size_t index = 1;
+		proc->addQuad(new SetOutQuad(index, expOpd));
+	}
 	proc->addQuad(new JmpQuad(proc->getLeaveLabel()));
 }
 

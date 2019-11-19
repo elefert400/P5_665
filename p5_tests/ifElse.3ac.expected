@@ -1,0 +1,34 @@
+[BEGIN GLOBALS]
+b
+[END GLOBALS]
+[BEGIN main LOCALS]
+x (local)
+y (local)
+tmp0 (tmp)
+tmp1 (tmp)
+tmp2 (tmp)
+tmp3 (tmp)
+[END main LOCALS]
+enter main
+x := 1
+y := 10
+b := 1
+tmp0 := x EQ 1
+iffalse tmp0 goto lbl_1
+goto lbl_2
+lbl_1: nop
+lbl_2: nop
+tmp1 := y NEQ 10
+iffalse tmp1 goto lbl_3
+goto lbl_4
+lbl_3: nop
+lbl_4: nop
+iffalse b goto lbl_5
+tmp2 := x ADD y
+x := tmp2
+goto lbl_6
+lbl_5: nop
+tmp3 := y ADD x
+y := tmp3
+lbl_6: nop
+lbl_0: EXIT

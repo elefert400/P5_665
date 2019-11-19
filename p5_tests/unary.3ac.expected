@@ -1,0 +1,18 @@
+[BEGIN GLOBALS]
+x
+b
+[END GLOBALS]
+[BEGIN main LOCALS]
+y (local)
+c (local)
+tmp0 (tmp)
+tmp1 (tmp)
+[END main LOCALS]
+enter main
+x := 1
+b := 1
+tmp0 := NEG x
+y := tmp0
+tmp1 := NOT b
+c := tmp1
+lbl_0: EXIT

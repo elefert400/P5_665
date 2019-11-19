@@ -1,0 +1,17 @@
+int main(){
+    bool b;
+    int x;
+    int y;
+
+    b = false;
+    x = 1;
+    y = 2;
+    
+    while(true){}
+
+    while(b){}
+
+    while(x < y){}
+
+    while(y > x){}   
+}

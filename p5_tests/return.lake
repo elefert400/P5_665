@@ -1,0 +1,14 @@
+void fooVoid(){
+    return;
+}
+int fooInt(){
+    return 1;
+}
+bool fooBool(){
+    return true;
+}
+int main(){
+    fooVoid();
+    fooInt();
+    fooBool();
+}

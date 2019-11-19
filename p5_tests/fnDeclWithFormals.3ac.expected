@@ -1,0 +1,28 @@
+[BEGIN GLOBALS]
+[END GLOBALS]
+[BEGIN foo LOCALS]
+x (formal)
+b (formal)
+[END foo LOCALS]
+enter foo
+getin 1 x
+getin 2 b
+lbl_0: leave foo
+[BEGIN main LOCALS]
+myX (local)
+myB (local)
+tmp0 (tmp)
+tmp1 (tmp)
+[END main LOCALS]
+enter main
+myX := 1
+myB := 0
+setin 1 1
+setin 2 1
+call foo
+getout 1 tmp0
+setin 1 myX
+setin 2 myB
+call foo
+getout 1 tmp1
+lbl_1: EXIT
