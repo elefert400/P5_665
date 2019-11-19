@@ -110,6 +110,12 @@ Opd * CallExpNode::flatten(Procedure * proc){
 	Opd* idOpd = myId->flatten(proc);
 	CallQuad* myCallQuad = new CallQuad(myId->getSymbol());
 	proc->addQuad(myCallQuad);
+	if(!myId->getSymbol()->getType()->asFn()->getReturnType()->isVoid())
+	{
+		Opd * getOut = proc->makeTmp();
+		proc->addQuad(new GetOutQuad(1, getOut));
+	}
+
 	return(idOpd);
 }
 
@@ -430,7 +436,17 @@ void IfStmtNode::to3AC(Procedure * proc){
 }
 
 void IfElseStmtNode::to3AC(Procedure * proc){
-	TODO(Implement me)
+	// Opd * flatStanley = myExp->flatten(proc);
+	// Label * enterLab = proc->makeLabel();
+	// NopQuad * enterQ = new NopQuad();
+	// enterQ->addLabel(enterLab);
+	// JmpIfQuad * myJmp = new JmpIfQuad(flatStanley, false, enterLab);
+	// proc->addQuad(myJmp);
+	// myDeclsT->to3AC(proc);
+	// myStmtsT->to3AC(proc);
+	// proc->addQuad(enterQ);
+
+
 }
 
 void WhileStmtNode::to3AC(Procedure * proc){

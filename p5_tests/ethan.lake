@@ -1,9 +1,7 @@
-
+int foo(){}
 int main()
 {
-int x;
-  if(true)
-  {
-    x = 3;
-  }
+  int x;
+  foo();
+  x = foo();
 }
