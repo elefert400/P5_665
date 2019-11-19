@@ -101,7 +101,10 @@ Opd * AssignNode::flatten(Procedure * proc){
 }
 
 Opd * DerefNode::flatten(Procedure * proc){
-	TODO(Implement me)
+	Opd* tgtOpd = myTgt->flatten(proc);
+	Opd* myTmp = proc->makeTmp();
+	proc->addQuad(new LocQuad(myTmp, tgtOpd));
+	return myTmp;
 }
 
 Opd * CallExpNode::flatten(Procedure * proc){
@@ -418,11 +421,13 @@ void PostDecStmtNode::to3AC(Procedure * proc){
 }
 
 void ReadStmtNode::to3AC(Procedure * proc){
-	TODO(Implement me)
+	Opd* expOpd = myExp->flatten(proc);
+	proc->addQuad(new SyscallQuad(Syscall::READ, expOpd));
 }
 
 void WriteStmtNode::to3AC(Procedure * proc){
-	TODO(Implement me)
+	Opd* expOpd = myExp->flatten(proc);
+	proc->addQuad(new SyscallQuad(Syscall::WRITE, expOpd));
 }
 
 void IfStmtNode::to3AC(Procedure * proc){
