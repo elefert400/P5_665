@@ -438,15 +438,24 @@ void IfStmtNode::to3AC(Procedure * proc){
 }
 
 void IfElseStmtNode::to3AC(Procedure * proc){
-	Opd * flatStanley = myExp->flatten(proc);
-	Label * beginLbl = proc->makeLabel();
-	NopQuad * beginNoOp = new NopQuad();
-	beginNoOp->addLabel(beginLbl);
-	JmpIfQuad * myJmp = new JmpIfQuad(flatStanley, false, beginLbl);
+	Opd * flattenStan = myExp->flatten(proc);
+	Label * first = proc->makeLabel();
+	//Label * elses = proc->makeLabel();
+	Label * end = proc->makeLabel();
+	NopQuad * firstQuad = new NopQuad();
+	firstQuad->addLabel(first);
+	JmpIfQuad * myJmp = new JmpIfQuad(flattenStan, false, first);
 	proc->addQuad(myJmp);
-	myDecls->to3AC(proc);
-	myStmts->to3AC(proc);
-	proc->addQuad(beginNoOp);
+	myDeclsT->to3AC(proc);
+	myStmtsT->to3AC(proc);
+	JmpQuad * toEnd = new JmpQuad(end);
+	proc->addQuad(toEnd);
+	proc->addQuad(firstQuad);
+	myDeclsF->to3AC(proc);
+	myStmtsF->to3AC(proc);
+	NopQuad * endQuad = new NopQuad();
+	endQuad->addLabel(end);
+	proc->addQuad(endQuad);
 }
 
 void WhileStmtNode::to3AC(Procedure * proc){
