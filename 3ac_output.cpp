@@ -101,10 +101,7 @@ Opd * AssignNode::flatten(Procedure * proc){
 }
 
 Opd * DerefNode::flatten(Procedure * proc){
-	Opd* tgtOpd = myTgt->flatten(proc);
-	Opd* myTmp = proc->makeTmp();
-	proc->addQuad(new LocQuad(myTmp, tgtOpd));
-	return myTmp;
+	TODO(Implement me)
 }
 
 Opd * CallExpNode::flatten(Procedure * proc){
@@ -421,13 +418,11 @@ void PostDecStmtNode::to3AC(Procedure * proc){
 }
 
 void ReadStmtNode::to3AC(Procedure * proc){
-	Opd* expOpd = myExp->flatten(proc);
-	proc->addQuad(new SyscallQuad(Syscall::READ, expOpd));
+	TODO(Implement me)
 }
 
 void WriteStmtNode::to3AC(Procedure * proc){
-	Opd* expOpd = myExp->flatten(proc);
-	proc->addQuad(new SyscallQuad(Syscall::WRITE, expOpd));
+	TODO(Implement me)
 }
 
 void IfStmtNode::to3AC(Procedure * proc){
@@ -443,17 +438,15 @@ void IfStmtNode::to3AC(Procedure * proc){
 }
 
 void IfElseStmtNode::to3AC(Procedure * proc){
-	// Opd * flatStanley = myExp->flatten(proc);
-	// Label * enterLab = proc->makeLabel();
-	// NopQuad * enterQ = new NopQuad();
-	// enterQ->addLabel(enterLab);
-	// JmpIfQuad * myJmp = new JmpIfQuad(flatStanley, false, enterLab);
-	// proc->addQuad(myJmp);
-	// myDeclsT->to3AC(proc);
-	// myStmtsT->to3AC(proc);
-	// proc->addQuad(enterQ);
-
-
+	Opd * flatStanley = myExp->flatten(proc);
+	Label * beginLbl = proc->makeLabel();
+	NopQuad * beginNoOp = new NopQuad();
+	beginNoOp->addLabel(beginLbl);
+	JmpIfQuad * myJmp = new JmpIfQuad(flatStanley, false, beginLbl);
+	proc->addQuad(myJmp);
+	myDecls->to3AC(proc);
+	myStmts->to3AC(proc);
+	proc->addQuad(beginNoOp);
 }
 
 void WhileStmtNode::to3AC(Procedure * proc){
