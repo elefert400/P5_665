@@ -110,13 +110,15 @@ Opd * CallExpNode::flatten(Procedure * proc){
 	Opd* idOpd = myId->flatten(proc);
 	CallQuad* myCallQuad = new CallQuad(myId->getSymbol());
 	proc->addQuad(myCallQuad);
+	// myId->getSymbol()->getType()->asFn()->getReturnType()->isVoid()
 	if(!myId->getSymbol()->getType()->asFn()->getReturnType()->isVoid())
 	{
 		Opd * getOut = proc->makeTmp();
 		proc->addQuad(new GetOutQuad(1, getOut));
+		return getOut;
 	}
 
-	return(idOpd);
+	return(proc->getSymOpd(myId->getSymbol()));
 }
 
 Opd * UnaryMinusNode::flatten(Procedure * proc){
